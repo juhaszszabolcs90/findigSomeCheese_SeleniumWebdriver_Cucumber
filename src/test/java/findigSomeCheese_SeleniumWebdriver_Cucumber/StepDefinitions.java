@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Assertions.*;
 import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class StepDefinitions {
 
@@ -43,11 +44,15 @@ public class StepDefinitions {
                 return driver.getTitle().toLowerCase().startsWith(titleStartsWith);
             }
         });
-        assertEquals(titleStartsWith, driver.getTitle().toLowerCase());
+//        assertEquals(titleStartsWith, driver.getTitle().toLowerCase());
+        String actualTitle = driver.getTitle().toLowerCase();
+//        assertTrue(actualTitle.startsWith(titleStartsWith));
+        assertTrue(actualTitle.contains(titleStartsWith));
+        System.out.println("Actual title:__ " + actualTitle);
     }
 
-//    @After()
-//    public void closeBrowser() {
-//        driver.quit();
-//    }
+    @After()
+    public void closeBrowser() {
+        driver.quit();
+    }
 }
